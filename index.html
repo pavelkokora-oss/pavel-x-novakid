@@ -122,7 +122,7 @@
            background:transparent; color:#fff; }
   .vlang.on { background:var(--accent); color:var(--accent-ink); }
   .video-card video { object-fit:contain; }
-  .avatar { width:34px; height:34px; border-radius:50%; background:var(--dark-btn-bg); color:var(--dark-btn-ink); display:grid; place-items:center; font-weight:800; }
+  .avatar { width:34px; height:34px; flex-shrink:0; object-fit:cover; border-radius:50%; background:var(--dark-btn-bg); color:var(--dark-btn-ink); display:grid; place-items:center; font-weight:800; }
   .video-card video { width:100%; border-radius:calc(var(--card-radius) * .6); display:block; background:#000; aspect-ratio:16/10; object-fit:cover; }
   .video-foot { display:flex; justify-content:space-between; font-size:12px; color:#aaa; margin-top:10px; }
   .tag { font-size:11px; font-weight:700; letter-spacing:.06em; padding:3px 8px; border-radius:6px; background:#ffffff1f; }
@@ -266,7 +266,7 @@
       
       <div class="video-wrap">
         <div class="video-card">
-          <div class="video-head"><span class="avatar">P</span><div><b>Pavel</b><br><small>Candidate · Senior Growth Product Manager (Activation &amp; Funnel Innovation)</small></div><div class="vlang-bar" role="group" aria-label="Video language"><button type="button" class="vlang on" data-src="novakid.mp4" data-poster="novakid-poster.jpg" data-dur="0:46" data-ratio="656/848">RU</button><button type="button" class="vlang" data-src="novakid-en.mp4" data-poster="novakid-en-poster.jpg" data-dur="0:48" data-ratio="544/848">EN</button></div></div>
+          <div class="video-head"><img class="avatar" src="pavel-avatar.jpg" alt="Pavel"><div><b>Pavel</b><br><small>Candidate · Senior Growth Product Manager (Activation &amp; Funnel Innovation)</small></div><div class="vlang-bar" role="group" aria-label="Video language"><button type="button" class="vlang on" data-src="novakid.mp4" data-poster="novakid-poster.jpg" data-dur="0:46" data-ratio="656/848">RU</button><button type="button" class="vlang" data-src="novakid-en.mp4" data-poster="novakid-en-poster.jpg" data-dur="0:48" data-ratio="544/848">EN</button></div></div>
           <video controls playsinline preload="metadata" src="novakid.mp4" poster="novakid-poster.jpg" style="aspect-ratio:656/848"></video>
           <div class="video-foot"><span>Video for Novakid</span><span class="vdur">0:46</span></div>
         </div>
