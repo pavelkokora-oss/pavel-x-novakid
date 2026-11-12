@@ -116,6 +116,12 @@
   .video-card { background:var(--dark-bg); color:#fff; border-radius:var(--card-radius); padding:14px; box-shadow:0 24px 60px #00000038; }
   .video-head { display:flex; align-items:center; gap:10px; margin-bottom:12px; font-size:14px; }
   .video-head small { color:#aaa; }
+  /* optional RU / EN video switch */
+  .vlang-bar { margin-left:auto; display:flex; gap:4px; padding:3px; border-radius:999px; background:rgba(255,255,255,.12); flex-shrink:0; }
+  .vlang { font:inherit; font-size:12px; font-weight:700; letter-spacing:.04em; border:0; cursor:pointer; padding:5px 10px; border-radius:999px;
+           background:transparent; color:#fff; }
+  .vlang.on { background:var(--accent); color:var(--accent-ink); }
+  .video-card video { object-fit:contain; }
   .avatar { width:34px; height:34px; border-radius:50%; background:var(--dark-btn-bg); color:var(--dark-btn-ink); display:grid; place-items:center; font-weight:800; }
   .video-card video { width:100%; border-radius:calc(var(--card-radius) * .6); display:block; background:#000; aspect-ratio:16/10; object-fit:cover; }
   .video-foot { display:flex; justify-content:space-between; font-size:12px; color:#aaa; margin-top:10px; }
@@ -260,10 +266,23 @@
       
       <div class="video-wrap">
         <div class="video-card">
-          <div class="video-head"><span class="avatar">P</span><div><b>Pavel</b><br><small>Candidate · Senior Growth Product Manager (Activation &amp; Funnel Innovation)</small></div></div>
-          <video controls playsinline preload="metadata" src="novakid.mp4" poster="novakid-poster.jpg"></video>
-          <div class="video-foot"><span>Video for Novakid</span><span>0:46</span></div>
+          <div class="video-head"><span class="avatar">P</span><div><b>Pavel</b><br><small>Candidate · Senior Growth Product Manager (Activation &amp; Funnel Innovation)</small></div><div class="vlang-bar" role="group" aria-label="Video language"><button type="button" class="vlang on" data-src="novakid.mp4" data-poster="novakid-poster.jpg" data-dur="0:46" data-ratio="656/848">RU</button><button type="button" class="vlang" data-src="novakid-en.mp4" data-poster="novakid-en-poster.jpg" data-dur="0:48" data-ratio="544/848">EN</button></div></div>
+          <video controls playsinline preload="metadata" src="novakid.mp4" poster="novakid-poster.jpg" style="aspect-ratio:656/848"></video>
+          <div class="video-foot"><span>Video for Novakid</span><span class="vdur">0:46</span></div>
         </div>
+          <script>
+          document.querySelectorAll('.vlang').forEach(function (b) {
+            b.addEventListener('click', function () {
+              var card = b.closest('.video-card'), vid = card.querySelector('video');
+              card.querySelectorAll('.vlang').forEach(function (x) { x.classList.toggle('on', x === b); });
+              vid.pause(); vid.src = b.dataset.src;
+              if (b.dataset.poster) vid.poster = b.dataset.poster;
+              if (b.dataset.ratio) vid.style.aspectRatio = b.dataset.ratio;
+              card.querySelector('.vdur').textContent = b.dataset.dur;
+              vid.load();
+            });
+          });
+          </script>
       </div>
     </div>
   </div>
